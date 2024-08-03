@@ -53,174 +53,10 @@ function deleteAll() {
   numberOne = "";
   numberTwo = "";
   operator = "";
-  result = " ";
+  result = "";
 }
 
-buttonOne.addEventListener("click", (e) => {
-  if (operator === "") {
-    numberOne += 1;
-  } else {
-    numberTwo += 1;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-buttonTwo.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 2;
-  } else {
-    numberTwo += 2;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-buttonThree.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 3;
-  } else {
-    numberTwo += 3;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-buttonFour.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 4;
-  } else {
-    numberTwo += 4;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-buttonFive.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 5;
-  } else {
-    numberTwo += 5;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-buttonSix.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 6;
-  } else {
-    numberTwo += 6;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-buttonSeven.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 7;
-  } else {
-    numberTwo += 7;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-buttonEight.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 8;
-  } else {
-    numberTwo += 8;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-
-buttonNine.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 9;
-  } else {
-    numberTwo += 9;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-
-buttonZero.addEventListener("click", () => {
-  if (operator === "") {
-    numberOne += 0;
-  } else {
-    numberTwo += 0;
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-});
-
-buttonPlus.addEventListener("click", () => {
-  if (numberOne === "") {
-    numberOne = 0;
-  } else if (operator === "" && numberOne !== "") {
-    operator = "+";
-  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
-    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
-    operator = "+";
-    numberTwo = "";
-  }
-  screen.textContent = `${numberOne} ${operator}`;
-});
-
-buttonMinus.addEventListener("click", () => {
-  if (numberOne === "") {
-    numberOne = 0;
-  } else if (operator === "" && numberOne !== "") {
-    operator = "-";
-  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
-    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
-    operator = "-";
-    numberTwo = "";
-  }
-  screen.textContent = `${numberOne} ${operator}`;
-});
-
-buttonMultiply.addEventListener("click", () => {
-  if (numberOne === "") {
-    numberOne = 0;
-  } else if (operator === "" && numberOne !== "") {
-    operator = "*";
-    screen.textContent = `${numberOne} ${operator} `;
-  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
-    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
-    operator = "*";
-    numberTwo = "";
-  }
-  screen.textContent = `${numberOne} ${operator}`;
-});
-
-buttonDivide.addEventListener("click", () => {
-  if (numberOne === "") {
-    numberOne = 0;
-  } else if (operator === "" && numberOne !== "") {
-    operator = "/";
-  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
-    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
-    operator = "/";
-    numberTwo = "";
-  }
-  screen.textContent = `${numberOne} ${operator}`;
-});
-
-buttonEqual.addEventListener("click", () => {
-  if (operator === "/" && numberTwo === "0") {
-    return;
-  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
-    result = operate(parseFloat(numberOne), parseFloat(numberTwo)).toFixed(8);
-    screen.textContent = `${numberOne} ${operator} ${numberTwo} = ${result}`;
-  }
-});
-
-buttonClear.addEventListener("click", () => {
-  deleteAll();
-});
-
-buttonBackspace.addEventListener("click", () => {
-  if (result !== "") {
-    deleteAll();
-  } else if (numberTwo !== "") {
-    numberTwo = numberTwo.slice(0, -1);
-    screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
-  } else if (operator !== "") {
-    operator = "";
-    screen.textContent = `${numberOne}`;
-  } else if (numberOne !== "") {
-    numberOne = numberOne.slice(0, -1);
-    screen.textContent = `${numberOne}`;
-  }
-});
-
-buttonDecimal.addEventListener("click", () => {
+function decimal() {
   if (numberTwo.includes(".")) return;
   if (
     numberOne !== "0" &&
@@ -234,4 +70,205 @@ buttonDecimal.addEventListener("click", () => {
     numberOne += ".";
     screen.textContent = `${numberOne}`;
   }
+}
+
+function backspace() {
+  if (result !== "") {
+    console.log("TETE");
+    deleteAll();
+  } else if (numberTwo !== "") {
+    console.log("AAAA");
+    numberTwo = numberTwo.slice(0, -1);
+    screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
+  } else if (operator !== "") {
+    console.log("ZZZZZZZ");
+    operator = "";
+    screen.textContent = `${numberOne}`;
+  } else if (numberOne !== "") {
+    console.log("VVVVVVVVV");
+    numberOne = numberOne.slice(0, -1);
+    screen.textContent = `${numberOne}`;
+  }
+}
+
+function equal() {
+  if (operator === "/" && numberTwo === "0") {
+    return;
+  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
+    result = operate(parseFloat(numberOne), parseFloat(numberTwo)).toFixed(8);
+    screen.textContent = `${numberOne} ${operator} ${numberTwo} = ${result}`;
+  }
+}
+
+function btnDivide() {
+  if (numberOne === "") {
+    numberOne = 0;
+  } else if (operator === "" && numberOne !== "") {
+    operator = "/";
+  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
+    console.log("TAAAD");
+    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
+    operator = "/";
+    numberTwo = "";
+  }
+  screen.textContent = `${numberOne} ${operator}`;
+}
+
+function btnMultiply() {
+  if (numberOne === "") {
+    numberOne = 0;
+  } else if (operator === "" && numberOne !== "") {
+    operator = "*";
+    screen.textContent = `${numberOne} ${operator} `;
+  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
+    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
+    operator = "*";
+    numberTwo = "";
+  }
+  screen.textContent = `${numberOne} ${operator}`;
+}
+
+function minus() {
+  if (numberOne === "") {
+    numberOne = 0;
+  } else if (operator === "" && numberOne !== "") {
+    operator = "-";
+  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
+    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
+    operator = "-";
+    numberTwo = "";
+  }
+  screen.textContent = `${numberOne} ${operator}`;
+}
+
+function plus() {
+  if (numberOne === "") {
+    numberOne = 0;
+  } else if (operator === "" && numberOne !== "") {
+    operator = "+";
+  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
+    numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
+    operator = "+";
+    numberTwo = "";
+  }
+  screen.textContent = `${numberOne} ${operator}`;
+}
+
+function addChar(newChar) {
+  if (operator === "") {
+    numberOne += newChar;
+  } else {
+    numberTwo += newChar;
+  }
+  screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
+}
+
+buttonOne.addEventListener("click", (e) => {
+  addChar(1);
+});
+
+buttonTwo.addEventListener("click", () => {
+  addChar(2);
+});
+
+buttonThree.addEventListener("click", () => {
+  addChar(3);
+});
+
+buttonFour.addEventListener("click", () => {
+  addChar(4);
+});
+buttonFive.addEventListener("click", () => {
+  addChar(5);
+});
+buttonSix.addEventListener("click", () => {
+  addChar(6);
+});
+buttonSeven.addEventListener("click", () => {
+  addChar(7);
+});
+buttonEight.addEventListener("click", () => {
+  addChar(8);
+});
+
+buttonNine.addEventListener("click", () => {
+  addChar(9);
+});
+
+buttonZero.addEventListener("click", () => {
+  addChar(0);
+});
+
+buttonPlus.addEventListener("click", () => {
+  plus();
+});
+
+buttonMinus.addEventListener("click", () => {
+  minus();
+});
+
+buttonMultiply.addEventListener("click", () => {
+  btnMultiply();
+});
+
+buttonDivide.addEventListener("click", () => {
+  btnDivide();
+});
+
+buttonEqual.addEventListener("click", () => {
+  equal();
+});
+
+buttonClear.addEventListener("click", () => {
+  deleteAll();
+});
+
+buttonBackspace.addEventListener("click", () => {
+  backspace();
+});
+
+buttonDecimal.addEventListener("click", () => {
+  decimal();
+});
+
+document.addEventListener("keydown", (e) => {
+  let k = e.key;
+  console.log(k);
+  k === "1"
+    ? addChar(1)
+    : k === "2"
+    ? addChar(2)
+    : k === "3"
+    ? addChar(3)
+    : k === "4"
+    ? addChar(4)
+    : k === "5"
+    ? addChar(5)
+    : k === "6"
+    ? addChar(6)
+    : k === "7"
+    ? addChar(7)
+    : k === "8"
+    ? addChar(8)
+    : k === "9"
+    ? addChar(9)
+    : k === "0"
+    ? addChar(0)
+    : k === ":"
+    ? btnDivide()
+    : k === "*"
+    ? btnMultiply()
+    : k === "Delete"
+    ? deleteAll()
+    : k === "Backspace"
+    ? backspace()
+    : k === "=" || k === "Enter"
+    ? equal()
+    : k === "."
+    ? decimal()
+    : k === "+"
+    ? plus()
+    : k === "-"
+    ? minus()
+    : "";
 });
