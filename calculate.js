@@ -74,18 +74,14 @@ function decimal() {
 
 function backspace() {
   if (result !== "") {
-    console.log("TETE");
     deleteAll();
   } else if (numberTwo !== "") {
-    console.log("AAAA");
     numberTwo = numberTwo.slice(0, -1);
     screen.textContent = `${numberOne} ${operator} ${numberTwo}`;
   } else if (operator !== "") {
-    console.log("ZZZZZZZ");
     operator = "";
     screen.textContent = `${numberOne}`;
   } else if (numberOne !== "") {
-    console.log("VVVVVVVVV");
     numberOne = numberOne.slice(0, -1);
     screen.textContent = `${numberOne}`;
   }
@@ -93,11 +89,16 @@ function backspace() {
 
 function equal() {
   if (operator === "/" && numberTwo === "0") {
+    alert("Dont divide by zero, please.");
     return;
-  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
-    result = operate(parseFloat(numberOne), parseFloat(numberTwo)).toFixed(8);
-    screen.textContent = `${numberOne} ${operator} ${numberTwo} = ${result}`;
   }
+
+  if (numberOne !== "" && operator !== "" && numberTwo !== "") {
+    result = operate(parseFloat(numberOne), parseFloat(numberTwo));
+    if ((result % 1).toString().length > 8)
+      result = operate(parseFloat(numberOne), parseFloat(numberTwo)).toFixed(5);
+  }
+  screen.textContent = `${numberOne} ${operator} ${numberTwo} = ${result}`;
 }
 
 function btnDivide() {
@@ -106,7 +107,6 @@ function btnDivide() {
   } else if (operator === "" && numberOne !== "") {
     operator = "/";
   } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
-    console.log("TAAAD");
     numberOne = operate(parseFloat(numberOne), parseFloat(numberTwo));
     operator = "/";
     numberTwo = "";
@@ -233,7 +233,6 @@ buttonDecimal.addEventListener("click", () => {
 
 document.addEventListener("keydown", (e) => {
   let k = e.key;
-  console.log(k);
   k === "1"
     ? addChar(1)
     : k === "2"
