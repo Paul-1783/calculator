@@ -89,16 +89,16 @@ function backspace() {
 
 function equal() {
   if (operator === "/" && numberTwo === "0") {
-    alert("Dont divide by zero, please.");
+    alert("Don't divide by zero, please.");
     return;
-  }
-
-  if (numberOne !== "" && operator !== "" && numberTwo !== "") {
+  } else if (numberOne !== "" && operator !== "" && numberTwo !== "") {
     result = operate(parseFloat(numberOne), parseFloat(numberTwo));
     if ((result % 1).toString().length > 8)
       result = operate(parseFloat(numberOne), parseFloat(numberTwo)).toFixed(5);
-  }
-  screen.textContent = `${numberOne} ${operator} ${numberTwo} = ${result}`;
+    screen.textContent = `${numberOne} ${operator} ${numberTwo} = ${result}`;
+  } else if (numberOne === "") {
+    screen.textContent = "0";
+  } else screen.textContent = `${numberOne} ${operator} ${numberTwo} `;
 }
 
 function btnDivide() {
